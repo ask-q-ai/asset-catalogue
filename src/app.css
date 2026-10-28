@@ -1,0 +1,64 @@
+@import 'tailwindcss';
+
+/*
+ * The app's design tokens. This file is their only owner: components use the
+ * utilities these make (bg-canvas, text-ink, border-line, min-h-control …)
+ * and never raw colours. Tailwind's own colour palette and small text sizes
+ * are switched off, so a raw `bg-red-500` or `text-xs` does not exist.
+ *
+ * Each colour holds its light and dark value; the browser picks one from the
+ * person's light or dark setting. Text colours reach at least 7:1 contrast
+ * on canvas and surface in both.
+ */
+@theme {
+  --color-*: initial;
+  --color-canvas: light-dark(oklch(0.985 0.002 250), oklch(0.17 0.01 250));
+  --color-surface: light-dark(oklch(1 0 0), oklch(0.22 0.012 250));
+  --color-line: light-dark(oklch(0.55 0.01 250), oklch(0.6 0.012 250));
+  --color-ink: light-dark(oklch(0.2 0.01 250), oklch(0.96 0.005 250));
+  --color-muted: light-dark(oklch(0.36 0.01 250), oklch(0.84 0.008 250));
+  --color-action: light-dark(oklch(0.42 0.16 262), oklch(0.82 0.11 262));
+  --color-action-ink: light-dark(oklch(1 0 0), oklch(0.17 0.01 250));
+  --color-focus: light-dark(oklch(0.42 0.16 262), oklch(0.82 0.11 262));
+
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+
+  /* Readable text only: nothing below 16px, line-height 1.5. */
+  --text-*: initial;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-xl: 1.375rem;
+  --text-xl--line-height: 1.5;
+  --text-2xl: 1.75rem;
+  --text-2xl--line-height: 1.5;
+  --text-3xl: 2.25rem;
+  --text-3xl--line-height: 1.5;
+
+  /* Every button, link and other control is at least 44px tall and wide. */
+  --spacing-control: 2.75rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+  }
+
+  html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-base text-ink;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-focus;
+  }
+}

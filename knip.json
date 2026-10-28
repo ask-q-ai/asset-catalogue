@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "src/routes/**/+{page,layout,page.server,layout.server,server,error}.{ts,js,svelte}",
+    "tests/**/*.ts"
+  ],
+  "project": ["src/**/*.{ts,js,svelte}", "tests/**/*.ts"],
+  "ignoreDependencies": ["tailwindcss"]
+}
