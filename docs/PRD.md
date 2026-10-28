@@ -201,6 +201,11 @@ triangle count, licence and credit, source, versions, "Download model",
   plan's "Find or make it", "Download GLB" and "Powered by Poly Haven".
   Giggles in this app's planning chat, picked from choices.
 
+- 2026-10-29: Mockups of the Catalogue screen (matches, close matches,
+  nothing close and "Find it", the Filter sheet) and the Asset screen, at 390
+  and 1440 wide, approved ("Approve them"); `docs/mockups/catalogue-and-asset.html`.
+  Giggles in this app's planning chat, picked from choices.
+
 ## 15. History
 
 - 2026-10-29: Written from the J41 plan (`dave-hq`
