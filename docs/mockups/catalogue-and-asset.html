@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asset Catalogue — mockup</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --canvas: oklch(0.985 0.002 250);
+        --surface: oklch(1 0 0);
+        --line: oklch(0.55 0.01 250);
+        --ink: oklch(0.2 0.01 250);
+        --muted: oklch(0.36 0.01 250);
+        --action: oklch(0.42 0.16 262);
+        --action-ink: oklch(1 0 0);
+        --soft: oklch(0.95 0.01 262);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--ink);
+        font:
+          16px/1.5 system-ui,
+          -apple-system,
+          'Segoe UI',
+          Roboto,
+          sans-serif;
+        overflow-wrap: anywhere;
+      }
+      .note {
+        background: var(--soft);
+        border-bottom: 1px solid var(--line);
+        padding: 12px 16px;
+      }
+      .label {
+        max-width: 1280px;
+        margin: 40px auto 8px;
+        padding: 0 16px;
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--action);
+      }
+      .screen {
+        max-width: 1280px;
+        margin: 0 auto;
+        border: 2px dashed var(--line);
+        background: var(--canvas);
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 16px;
+        border-bottom: 1px solid var(--line);
+        background: var(--surface);
+      }
+      header b {
+        font-size: 1.125rem;
+      }
+      a,
+      .link {
+        color: var(--action);
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      main {
+        padding: 16px;
+      }
+      .search {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .search input {
+        flex: 1 1 220px;
+        min-height: 44px;
+        font: inherit;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--ink);
+      }
+      button,
+      .btn {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 0 16px;
+        font: inherit;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        text-decoration: none;
+      }
+      .primary {
+        background: var(--action);
+        color: var(--action-ink);
+        border-color: var(--action);
+      }
+      h1 {
+        font-size: 1.75rem;
+        margin: 16px 0 8px;
+      }
+      h2 {
+        font-size: 1.375rem;
+        margin: 24px 0 8px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+      @media (min-width: 700px) {
+        .grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1024px) {
+        .grid {
+          grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        text-decoration: none;
+        color: var(--ink);
+        display: flex;
+        flex-direction: column;
+      }
+      .card img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: contain;
+        background: oklch(0.93 0.004 250);
+        display: block;
+      }
+      .card .t {
+        padding: 8px 12px 0;
+        font-weight: 600;
+      }
+      .card .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 4px 12px 12px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0 10px;
+        color: var(--muted);
+      }
+      .card button {
+        margin: 0 12px 12px;
+      }
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 16px;
+        margin-top: 16px;
+      }
+      .steps {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+      }
+      .steps li {
+        padding: 4px 0;
+      }
+      .done::before {
+        content: '✓ ';
+        color: var(--action);
+        font-weight: 700;
+      }
+      .now::before {
+        content: '● ';
+        color: var(--action);
+      }
+      .wait::before {
+        content: '○ ';
+        color: var(--muted);
+      }
+      footer {
+        padding: 16px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+      }
+      .sheetwrap {
+        background: oklch(0.2 0.01 250 / 0.45);
+        padding-top: 120px;
+        min-height: 560px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      @media (min-width: 1024px) {
+        .sheetwrap {
+          align-items: stretch;
+          justify-content: flex-end;
+          padding-top: 0;
+        }
+      }
+      .sheet {
+        background: var(--surface);
+        width: 100%;
+        max-width: 420px;
+        border-radius: 16px 16px 0 0;
+        padding: 16px;
+      }
+      @media (min-width: 1024px) {
+        .sheet {
+          border-radius: 0;
+        }
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0 0 16px;
+      }
+      legend {
+        font-weight: 600;
+        padding: 0;
+        margin-bottom: 4px;
+      }
+      .check {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 44px;
+      }
+      .check input {
+        width: 22px;
+        height: 22px;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .chips button[aria-pressed='true'] {
+        background: var(--soft);
+        border-color: var(--action);
+        color: var(--action);
+      }
+      .asset {
+        display: grid;
+        gap: 16px;
+      }
+      @media (min-width: 1024px) {
+        .asset {
+          grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+          align-items: start;
+        }
+      }
+      .viewer {
+        background: oklch(0.93 0.004 250);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        aspect-ratio: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .viewer img {
+        width: auto;
+        height: 80%;
+        max-width: 90%;
+      }
+      .hint {
+        text-align: center;
+        color: var(--muted);
+        margin: 8px 0 0;
+      }
+      @media (min-width: 1024px) {
+        .viewer {
+          aspect-ratio: auto;
+          height: 560px;
+        }
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 12px 0;
+      }
+      dl {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: 4px 16px;
+        margin: 0;
+      }
+      dt {
+        color: var(--muted);
+      }
+      dd {
+        margin: 0;
+      }
+      .versions {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .versions li {
+        border-top: 1px solid var(--line);
+        padding: 8px 0;
+      }
+      .danger-zone {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="note">
+      <b>Mockup for approval, not the built app.</b> The models are real Poly
+      Haven models, but the real catalogue starts empty and fills as models are
+      asked for. These pictures are Poly Haven's own previews, loaded from their
+      site; the catalogue will draw its own.
+    </div>
+
+    <!-- 1. Catalogue: a search with matches -->
+    <p class="label">1. Catalogue — a search that finds models</p>
+    <div class="screen">
+      <header><b>Asset Catalogue</b><a href="#">Sign out</a></header>
+      <main>
+        <h1>Find a 3D model</h1>
+        <div class="search">
+          <input
+            aria-label="Describe the model"
+            value="a wooden chair"
+            placeholder="Describe the model…"
+          /><button class="primary">Search</button><button>Filter</button>
+        </div>
+        <div class="grid">
+          <a class="card" href="#asset"
+            ><img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/WoodenChair_01.png?width=256&height=256&format=webp"
+            /><span class="t">Wooden Chair 01</span
+            ><span class="row"
+              ><span class="badge">CC0</span
+              ><span class="muted">Match</span></span
+            ></a
+          >
+          <a class="card" href="#asset"
+            ><img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/Rockingchair_01.png?width=256&height=256&format=webp"
+            /><span class="t">Rockingchair 01</span
+            ><span class="row"><span class="badge">CC0</span></span></a
+          >
+          <a class="card" href="#asset"
+            ><img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/gallinera_chair.png?width=256&height=256&format=webp"
+            /><span class="t">Gallinera Chair</span
+            ><span class="row"><span class="badge">CC0</span></span></a
+          >
+          <a class="card" href="#asset"
+            ><img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/bar_chair_round_01.png?width=256&height=256&format=webp"
+            /><span class="t">Bar Chair Round 01</span
+            ><span class="row"><span class="badge">CC0</span></span></a
+          >
+          <a class="card" href="#asset"
+            ><img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/GreenChair_01.png?width=256&height=256&format=webp"
+            /><span class="t">Green Chair 01</span
+            ><span class="row"><span class="badge">CC0</span></span></a
+          >
+        </div>
+      </main>
+      <footer>
+        Models from <a href="https://polyhaven.com">Poly Haven</a>
+      </footer>
+    </div>
+
+    <!-- 2. Catalogue: close matches -->
+    <p class="label">2. Catalogue — only close matches</p>
+    <div class="screen">
+      <header><b>Asset Catalogue</b><a href="#">Sign out</a></header>
+      <main>
+        <h1>Find a 3D model</h1>
+        <div class="search">
+          <input
+            aria-label="Describe the model"
+            value="an old wine cask"
+          /><button class="primary">Search</button><button>Filter</button>
+        </div>
+        <h2>Close matches</h2>
+        <p class="muted">
+          Nothing is quite "an old wine cask". Is one of these right?
+        </p>
+        <div class="grid">
+          <div class="card">
+            <img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/Barrel_02.png?width=256&height=256&format=webp"
+            /><span class="t">Barrel 02</span
+            ><span class="row"
+              ><span class="badge">CC0</span
+              ><span class="muted">Close</span></span
+            ><button>Use this</button>
+          </div>
+          <div class="card">
+            <img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/barrel_03.png?width=256&height=256&format=webp"
+            /><span class="t">Barrel 03</span
+            ><span class="row"
+              ><span class="badge">CC0</span
+              ><span class="muted">Close</span></span
+            ><button>Use this</button>
+          </div>
+          <div class="card">
+            <img
+              alt=""
+              src="https://cdn.polyhaven.com/asset_img/thumbs/CheeseBox_01.png?width=256&height=256&format=webp"
+            /><span class="t">CheeseBox 01</span
+            ><span class="row"
+              ><span class="badge">CC0</span
+              ><span class="muted">Close</span></span
+            ><button>Use this</button>
+          </div>
+        </div>
+        <div class="panel">
+          <b>None of these?</b>
+          <p class="muted" style="margin: 4px 0 12px">
+            The catalogue will look for a better free model on Poly Haven.
+          </p>
+          <button>Make a new one</button>
+        </div>
+      </main>
+      <footer>
+        Models from <a href="https://polyhaven.com">Poly Haven</a>
+      </footer>
+    </div>
+
+    <!-- 3. Catalogue: nothing close, Find it -->
+    <p class="label">3. Catalogue — nothing close, then "Find it"</p>
+    <div class="screen">
+      <header><b>Asset Catalogue</b><a href="#">Sign out</a></header>
+      <main>
+        <h1>Find a 3D model</h1>
+        <div class="search">
+          <input
+            aria-label="Describe the model"
+            value="a brass lantern"
+          /><button class="primary">Search</button><button>Filter</button>
+        </div>
+        <div class="panel">
+          <b>Nothing close to "a brass lantern" yet.</b>
+          <p class="muted" style="margin: 4px 0 12px">
+            Find it looks for a free model on Poly Haven and adds it here.
+          </p>
+          <button class="primary">Find it</button>
+        </div>
+        <div class="panel">
+          <b>Finding "a brass lantern"</b>
+          <ul class="steps">
+            <li class="done">Searching free models — found Lantern 01</li>
+            <li class="done">Checking the model</li>
+            <li class="now">Drawing the picture</li>
+            <li class="wait">Saving to GitHub</li>
+          </ul>
+          <p class="muted" style="margin: 8px 0 0">
+            Usually a minute or two. You can leave this page; it will be in the
+            catalogue when it's done.
+          </p>
+        </div>
+        <div class="panel">
+          <b>No free model found for "a cartoon oak tree".</b>
+          <p class="muted" style="margin: 4px 0 0">
+            Poly Haven has realistic models only, so cartoon styles are often
+            missing. Try describing a realistic one, such as "an oak tree".
+          </p>
+        </div>
+      </main>
+      <footer>
+        Models from <a href="https://polyhaven.com">Poly Haven</a>
+      </footer>
+    </div>
+
+    <!-- 4. Filter sheet -->
+    <p class="label">4. Catalogue — the Filter sheet</p>
+    <div class="screen">
+      <div class="sheetwrap">
+        <div class="sheet" role="dialog" aria-label="Filter">
+          <h2 style="margin-top: 0">Filter</h2>
+          <fieldset>
+            <legend>Source</legend>
+            <label class="check"
+              ><input type="checkbox" checked />Poly Haven</label
+            >
+          </fieldset>
+          <fieldset>
+            <legend>Licence</legend>
+            <label class="check"
+              ><input type="checkbox" checked />CC0 (free for any use)</label
+            >
+          </fieldset>
+          <fieldset>
+            <legend>Tag</legend>
+            <div class="chips">
+              <button aria-pressed="true">chair</button
+              ><button aria-pressed="false">furniture</button
+              ><button aria-pressed="false">wood</button
+              ><button aria-pressed="false">vintage</button
+              ><button aria-pressed="false">barrel</button>
+            </div>
+          </fieldset>
+          <div class="actions">
+            <button class="primary">Show models</button><button>Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Asset -->
+    <p class="label" id="asset">5. Asset — one model</p>
+    <div class="screen">
+      <header><b>Asset Catalogue</b><a href="#">Sign out</a></header>
+      <main>
+        <a href="#">← Back to results</a>
+        <div class="asset">
+          <div>
+            <div class="viewer">
+              <img
+                alt="3D preview of Rockingchair 01"
+                src="https://cdn.polyhaven.com/asset_img/thumbs/Rockingchair_01.png?width=512&height=512&format=webp"
+              />
+            </div>
+            <p class="hint">Drag to turn · pinch or scroll to zoom</p>
+          </div>
+          <div>
+            <h1 style="margin-top: 0">Rockingchair 01</h1>
+            <p class="muted" style="margin: 0">
+              Solid wood vintage rocking chair with slatted back, curved legs,
+              armrests and turned spindles.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href="#">Download model (0.8 MB)</a
+              ><button>Copy link</button>
+            </div>
+            <dl>
+              <dt>Size</dt>
+              <dd>0.71 × 0.99 × 0.83 m (width × height × depth)</dd>
+              <dt>Triangles</dt>
+              <dd>11,866</dd>
+              <dt>Tags</dt>
+              <dd>chair, vintage, prop, wood, furniture, rocking chair</dd>
+              <dt>Licence</dt>
+              <dd>CC0 — free for any use</dd>
+              <dt>Credit</dt>
+              <dd>Jorge Camacho, via Poly Haven (credit not required)</dd>
+              <dt>Source</dt>
+              <dd>
+                <a href="https://polyhaven.com/a/Rockingchair_01">Poly Haven</a>
+              </dd>
+              <dt>Cost</dt>
+              <dd>$0.00</dd>
+            </dl>
+            <h2>Versions</h2>
+            <ul class="versions">
+              <li>
+                <b>Version 1</b> — fetched for "a wooden rocking chair"<br /><span
+                  class="muted"
+                  ><a href="#">Saved on GitHub</a></span
+                >
+              </li>
+            </ul>
+            <div class="danger-zone">
+              <button>Archive</button>
+              <p class="muted" style="margin: 4px 0 0">
+                Archiving hides it from searches. Nothing is deleted; you can
+                restore it here.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer>
+        Models from <a href="https://polyhaven.com">Poly Haven</a>
+      </footer>
+    </div>
+    <p style="height: 40px"></p>
+  </body>
+</html>

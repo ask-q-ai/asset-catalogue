@@ -9,3 +9,5 @@ coverage/
 !.env.example
 .DS_Store
 *.log
+# Screenshots of mockups hold Poly Haven's own preview pictures; not committed.
+docs/mockups/screenshots/
