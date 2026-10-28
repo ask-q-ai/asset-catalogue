@@ -30,6 +30,15 @@ workflow and `verify` philosophy across every template.
 - Node 22 (see `.nvmrc`). `npm ci` refuses other versions. On a Mac with
   Homebrew: `export PATH="$(brew --prefix node@22)/bin:$PATH"`.
 
+## Settings
+
+The app refuses to start until every setting in [.env.example](.env.example)
+is set, and names any that are missing. None has a built-in value. On the
+Mac, the GitHub App's details and `SESSION_SECRET` live only in
+`~/.config/dave-hq/local.env` (mode 600); put the rest in `.env` (git ignores
+it). `npm run dev` reads both. The browser tests use made-up values from
+`tests/test-settings.ts`.
+
 ## Run it
 
 ```sh
