@@ -206,6 +206,10 @@ triangle count, licence and credit, source, versions, "Download model",
   and 1440 wide, approved ("Approve them"); `docs/mockups/catalogue-and-asset.html`.
   Giggles in this app's planning chat, picked from choices.
 
+- 2026-10-29: The app's code lives in a new public GitHub repository,
+  `ask-q-ai/asset-catalogue`, with one issue and one pull request per piece
+  of work. Giggles in this app's planning chat: "i new public repo".
+
 ## 15. History
 
 - 2026-10-29: Written from the J41 plan (`dave-hq`
