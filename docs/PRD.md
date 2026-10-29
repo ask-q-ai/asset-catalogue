@@ -216,3 +216,4 @@ triangle count, licence and credit, source, versions, "Download model",
   `docs/plans/2026-10-28-generative-3d-asset-cache.md`, branch
   `claude/bc-3d-cache-plan-717dc7`) and Giggles's answers.
 - 2026-10-29: Agreed by Giggles.
+- 2026-10-29: R1 done — the one-file Git LFS upload test passed against `ask-q-ai/3d-assets-lfs-test` (`scripts/lfs-upload-test.mjs`; commit 7bf34c3 there). Step 1a split into issues #1–#20, approved by Giggles in chat.
